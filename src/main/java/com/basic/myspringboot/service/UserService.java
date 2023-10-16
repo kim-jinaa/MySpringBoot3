@@ -60,7 +60,7 @@ public class UserService {
                 .map(user -> modelMapper.map(user, UserResDTO.class))//Stream<UserResDTO>
                 // 람다식 추상메서드에 오버라이딩
                 .collect(toList());// List<UserResDTO>
-        return userResDTOList;
+        return userResDTOList;//
     }
 
     //수정 update
