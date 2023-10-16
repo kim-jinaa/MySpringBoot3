@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<body>
+<table>
+    <tr>
+        <th>Seq</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="user, userStat : ${users}"> <!-- UserResDTO -->
+        <td th:text="${userStat.count}"></td> <!-- .count-> 1부터 시작 / .index-> 0부터 시작 -->
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${#temporals.format(user.createdAt,'yyyy-MM-dd hh:mm')}"></td>
+        <!-- thymeleaf 날짜표기 : #temporals.format(입력값.날짜변수,'yyyy-MM-dd hh:mm:ss') -->
+    </tr>
+</table>
+</body>
+</html>
