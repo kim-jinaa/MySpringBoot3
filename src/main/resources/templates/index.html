@@ -8,6 +8,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Date</th>
+        <th>Edit</th>
     </tr>
     <tr th:each="user, userStat : ${users}"> <!-- UserResDTO -->
         <td th:text="${userStat.count}"></td> <!-- .count-> 1부터 시작 / .index-> 0부터 시작 -->
@@ -15,7 +16,9 @@
         <td th:text="${user.email}"></td>
         <td th:text="${#temporals.format(user.createdAt,'yyyy-MM-dd hh:mm')}"></td>
         <!-- thymeleaf 날짜표기 : #temporals.format(입력값.날짜변수,'yyyy-MM-dd hh:mm:ss') -->
+        <td><a th:href="@{/userspage/edit/{id}(id=${user.id})}">update</a></td>
     </tr>
 </table>
+<p><a href="/userspage/signup">Insrt</a></p>
 </body>
 </html>

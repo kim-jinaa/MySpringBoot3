@@ -1,6 +1,7 @@
 package com.basic.myspringboot.service;
 
 import com.basic.myspringboot.dto.UserReqDTO;
+import com.basic.myspringboot.dto.UserReqForm;
 import com.basic.myspringboot.dto.UserResDTO;
 import com.basic.myspringboot.entity.User;
 import com.basic.myspringboot.exception.BusinessException;
@@ -79,6 +80,13 @@ public class UserService {
                 .orElseThrow(() ->
                         new BusinessException(id + " User Not Found", HttpStatus.NOT_FOUND));
         userRepository.delete(user);
+    }
+
+    public void updateUserForm(UserReqForm userReqForm){
+        User existUser = userRepository.findById(userReqForm.getId())
+                .orElseThrow(() ->
+                        new BusinessException(userReqForm.getId() + " User Not Found", HttpStatus.NOT_FOUND));
+        existUser.setName(userReqForm.getName());
     }
 
 }
