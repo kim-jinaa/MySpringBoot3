@@ -18,6 +18,7 @@
 		<spring-framework.version>6.0.12</spring-framework.version>
 		<!-- Cannot read field "generatedClass" because "data" is null-->
 		<!-- 버전에 맞춰 최적화 해놨는데 다른 버전으로 바꾸면 생기는 오류-->
+		<spring-boot-admin.version>3.0.4</spring-boot-admin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -89,8 +90,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
