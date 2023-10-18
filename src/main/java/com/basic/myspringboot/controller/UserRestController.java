@@ -5,6 +5,7 @@ import com.basic.myspringboot.dto.UserResDTO;
 import com.basic.myspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,15 @@ public class UserRestController {
     }
 
     //post 1개조회
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')") //userboot로 로그인할 경우에만 볼 수 있음(다른 아이디로 로그인 시 403에러)
     public UserResDTO getUserById(@PathVariable Long id){
         return userService.getUserById(id);
     }
 
     //get 전체조회
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')") //adminboot로 로그인할 경우에만 볼 수 있음(다른 아이디로 로그인 시 403에러)
     public List<UserResDTO> getUsers(){
         return userService.getUsers();
     }
